@@ -134,6 +134,11 @@ config INCLUDE_DEBUG_YML
     IMAGE_FEATURES which disable root password and include development
     and profiling tools.
 
+config INCLUDE_INOMATIC_YML
+  bool "Include inomatic"
+  help
+    Include inomatic.yml.
+
 config INCLUDE_SDK_YML
   bool "Populate SDK for image recipe"
   help
@@ -281,6 +286,11 @@ config KAS_INCLUDE_DEBUG_YML_FILE
   string "KAS DEBUG YML file"
   depends on INCLUDE_DEBUG_YML
   default "include/common-debug.yml"
+
+config KAS_INCLUDE_INOMATIC_YML_FILE
+  string "KAS Inomatic YML file"
+  depends on INCLUDE_INOMATIC_YML
+  default "../inomatic.yml"
 
 config KAS_INCLUDE_SDK_YML_FILE
   string "KAS SDK YML file"
