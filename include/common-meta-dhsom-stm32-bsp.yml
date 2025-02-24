@@ -19,5 +19,5 @@ repos:
     branch: main
 
   meta-dhsom-stm32-bsp:
-    url: https://github.com/dh-electronics/meta-dhsom-stm32-bsp.git
+    url: https://github.com/inomatic/meta-dhsom-stm32-bsp
     branch: main
