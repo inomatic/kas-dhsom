@@ -88,6 +88,16 @@ config MACHINE_STM32MP1_DHCOR_TESTBENCH
   help
     OE MACHINE variable is set to dh-stm32mp1-dhcor-testbench .
 
+config MACHINE_STM32MP25_DHCOS_BB
+  bool "DH STM32MP25xx DHCOS BB"
+  help
+    OE MACHINE variable is set to dh-stm32mp25-dhcos-bb .
+
+config MACHINE_STM32MP25_DHCOS_DHSBC
+  bool "DH STM32MP25xx DHCOS DHSBC"
+  help
+    OE MACHINE variable is set to dh-stm32mp25-dhcos-dhsbc .
+
 endchoice
 
 choice
@@ -184,6 +194,12 @@ config INCLUDE_EXTRAS_QT6_YML
     Include Qt6 layer in bblayers.conf . This adds Qt6 libraries and
     examples into dh-image-demo .
 
+config INCLUDE_EXTRAS_TENSORFLOW_YML
+  bool "Include TensorFlow layers in build"
+  help
+    Include TensorFlow layer in bblayers.conf . This adds TensorFlow-Lite
+    libraries and examples into dh-image-demo .
+
 config INCLUDE_EXTRAS_WPE_YML
   bool "Include WPE layers in build"
   help
@@ -223,7 +239,9 @@ config KAS_INCLUDE_BSP_YML_FILE
 	     MACHINE_STM32MP1_DHCOM_PICOITX || \
 	     MACHINE_STM32MP1_DHCOR_AVENGER96 || \
 	     MACHINE_STM32MP1_DHCOR_DRC_COMPACT || \
-	     MACHINE_STM32MP1_DHCOR_TESTBENCH
+	     MACHINE_STM32MP1_DHCOR_TESTBENCH || \
+	     MACHINE_STM32MP25_DHCOS_BB || \
+	     MACHINE_STM32MP25_DHCOS_DHSBC
   default "dh-imx6-dhcom-drc02.yml" if MACHINE_IMX6_DHCOM_DRC02
   default "dh-imx6-dhcom-pdk2.yml" if MACHINE_IMX6_DHCOM_PDK2
   default "dh-imx6-dhcom-picoitx.yml" if MACHINE_IMX6_DHCOM_PICOITX
@@ -241,6 +259,8 @@ config KAS_INCLUDE_BSP_YML_FILE
   default "dh-stm32mp1-dhcor-avenger96.yml" if MACHINE_STM32MP1_DHCOR_AVENGER96
   default "dh-stm32mp1-dhcor-drc-compact.yml" if MACHINE_STM32MP1_DHCOR_DRC_COMPACT
   default "dh-stm32mp1-dhcor-testbench.yml" if MACHINE_STM32MP1_DHCOR_TESTBENCH
+  default "dh-stm32mp25-dhcos-bb.yml" if MACHINE_STM32MP25_DHCOS_BB
+  default "dh-stm32mp25-dhcos-dhsbc.yml" if MACHINE_STM32MP25_DHCOS_DHSBC
 
 config KAS_INCLUDE_DH_REPO_YML_FILE
   string "KAS DH Repo YML file"
@@ -276,6 +296,11 @@ config KAS_INCLUDE_EXTRAS_QT6_YML_FILE
   string "KAS Extras layer Qt6 YML file"
   depends on INCLUDE_EXTRAS_QT6_YML
   default "include/common-meta-dhsom-extras-qt6.yml"
+
+config KAS_INCLUDE_EXTRAS_TENSORFLOW_YML_FILE
+  string "KAS Extras layer TensorFlow YML file"
+  depends on INCLUDE_EXTRAS_TENSORFLOW_YML
+  default "include/common-meta-dhsom-extras-tensorflow.yml"
 
 config KAS_INCLUDE_EXTRAS_WPE_YML_FILE
   string "KAS Extras layer WPE YML file"
