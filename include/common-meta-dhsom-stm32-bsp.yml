@@ -20,4 +20,4 @@ repos:
 
   meta-dhsom-stm32-bsp:
     url: https://github.com/inomatic/meta-dhsom-stm32-bsp
-    branch: main
+    branch: linux_6_6
