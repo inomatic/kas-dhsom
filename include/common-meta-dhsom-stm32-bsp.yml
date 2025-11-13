@@ -21,3 +21,4 @@ repos:
   meta-dhsom-stm32-bsp:
     url: https://github.com/dh-electronics/meta-dhsom-stm32-bsp
     branch: main
+    commit: f3815079c6ea7df067a817f5babd6628adf335dc
