@@ -58,6 +58,11 @@ config MACHINE_STM32MP13_DHCOR_DHSBC
   help
     OE MACHINE variable is set to dh-stm32mp13-dhcor-dhsbc .
 
+config MACHINE_STM32MP13_INOMATIC_IOTGW_V1
+  bool "inomatic IotGW v1"
+  help
+    OE MACHINE variable is set to inomatic-iotgw-v1 .
+
 config MACHINE_STM32MP1_DHCOM_DRC02
   bool "DH STM32MP15xx DHCOM DRC02"
   help
@@ -144,11 +149,6 @@ config INCLUDE_DEBUG_YML
     IMAGE_FEATURES which disable root password and include development
     and profiling tools.
 
-config INCLUDE_INOMATIC_YML
-  bool "Include inomatic"
-  help
-    Include inomatic.yml.
-
 config INCLUDE_SDK_YML
   bool "Populate SDK for image recipe"
   help
@@ -234,6 +234,7 @@ config KAS_INCLUDE_BSP_YML_FILE
 	     MACHINE_IMX8MP_DHCOM_PDK3 || \
 	     MACHINE_IMX8MP_DHCOM_PICOITX || \
 	     MACHINE_STM32MP13_DHCOR_DHSBC || \
+	     MACHINE_STM32MP13_INOMATIC_IOTGW_V1 || \
 	     MACHINE_STM32MP1_DHCOM_PDK2 || \
 	     MACHINE_STM32MP1_DHCOM_DRC02 || \
 	     MACHINE_STM32MP1_DHCOM_PICOITX || \
@@ -253,6 +254,7 @@ config KAS_INCLUDE_BSP_YML_FILE
   default "dh-imx8mp-dhcom-pdk3.yml" if MACHINE_IMX8MP_DHCOM_PDK3
   default "dh-imx8mp-dhcom-picoitx.yml" if MACHINE_IMX8MP_DHCOM_PICOITX
   default "dh-stm32mp13-dhcor-dhsbc.yml" if MACHINE_STM32MP13_DHCOR_DHSBC
+  default "inomatic-iotgw-v1.yml" if MACHINE_STM32MP13_INOMATIC_IOTGW_V1
   default "dh-stm32mp1-dhcom-drc02.yml" if MACHINE_STM32MP1_DHCOM_DRC02
   default "dh-stm32mp1-dhcom-pdk2.yml" if MACHINE_STM32MP1_DHCOM_PDK2
   default "dh-stm32mp1-dhcom-picoitx.yml" if MACHINE_STM32MP1_DHCOM_PICOITX
@@ -311,11 +313,6 @@ config KAS_INCLUDE_DEBUG_YML_FILE
   string "KAS DEBUG YML file"
   depends on INCLUDE_DEBUG_YML
   default "include/common-debug.yml"
-
-config KAS_INCLUDE_INOMATIC_YML_FILE
-  string "KAS Inomatic YML file"
-  depends on INCLUDE_INOMATIC_YML
-  default "../inomatic.yml"
 
 config KAS_INCLUDE_SDK_YML_FILE
   string "KAS SDK YML file"

@@ -1,0 +1,39 @@
+header:
+  version: 14
+  includes:
+    - include/common-meta-dhsom-stm32-bsp.yml
+
+machine: inomatic-iotgw-v1
+
+repos:
+  meta-openembedded:
+    url: git://git.openembedded.org/meta-openembedded
+    branch: scarthgap
+    layers:
+      meta-oe:
+      meta-networking:
+      meta-python:
+      meta-filesystems:
+
+  meta-swupdate:
+    url: https://github.com/sbabic/meta-swupdate.git
+    branch: scarthgap
+
+  meta-iotgw:
+    url: https://alex-brickwedde:Wolf&02-92@git.inomatic.de/alex-brickwedde/meta-iotgw
+    branch: linux_6_12
+
+local_conf_header:
+  meta-custom: |
+    IMAGE_INSTALL:append = " bluez5 mosquitto readline gcc libgcc make git minicom opkg rsync openssh sqlite3 strace vim wget curl can-utils gptfdisk libgpiod libgpiod-dev libgpiod-tools i2c-tools dosfstools simple-mtpfs kea "
+    IMAGE_INSTALL:append = " swupdate swupdate-lualoader u-boot-fw-utils "
+    DISTRO_FEATURES:append = " bluetooth wifi"
+    MACHINE_FEATURES:append = " bluetooth wifi usbhost "
+
+    XXX_EXTRA_IMAGE_FEATURES:append = " read-only-rootfs "
+    EXTRA_IMAGE_FEATURES:append = " overlayfs-etc"
+    OVERLAYFS_ETC_MOUNT_POINT = "/mnt/user"
+    OVERLAYFS_ETC_DEVICE = "/dev/mmcblk0p4"
+    OVERLAYFS_ETC_FSTYPE = "ext4"
+
+    IMAGE_FEATURES:remove = "splash package-management "
