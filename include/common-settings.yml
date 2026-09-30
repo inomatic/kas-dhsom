@@ -10,6 +10,7 @@ bblayers_conf_header:
 local_conf_header:
   standard: |
     BB_HASHSERVE = "auto"
+    BB_HASHSERVE_DB_DIR ?= "${SSTATE_DIR}"
     BB_SIGNATURE_HANDLER = "OEEquivHash"
 
   buildinfo: |
