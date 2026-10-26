@@ -3,9 +3,17 @@ header:
 
 defaults:
   repos:
-    branch: kirkstone
+    branch: wrynose
+
+repos:
+  bitbake:
+    branch: "2.18"
 
 local_conf_header:
+  cve-check: |
+    OE_FRAGMENTS += "core/yocto/sbom-cve-check"
+    include conf/distro/include/cve-extra-exclusions.inc
+
   lttng: |
     LTTNGMODULES:pn-lttng-tools = ""
 

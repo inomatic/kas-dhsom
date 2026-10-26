@@ -93,6 +93,11 @@ config MACHINE_STM32MP1_DHCOR_TESTBENCH
   help
     OE MACHINE variable is set to dh-stm32mp1-dhcor-testbench .
 
+config MACHINE_STM32MP23_DHCOS_BB
+  bool "DH STM32MP23xx DHCOS BB"
+  help
+    OE MACHINE variable is set to dh-stm32mp23-dhcos-bb .
+
 config MACHINE_STM32MP25_DHCOS_BB
   bool "DH STM32MP25xx DHCOS BB"
   help
@@ -110,25 +115,17 @@ choice
   help
     OE release to use during the build.
 
+config RELEASE_WRYNOSE
+  bool "OE Wrynose 6.0 LTS"
+  help
+    OE Wrynose 6.0 LTS release .
+
 config RELEASE_SCARTHGAP
   bool "OE Scarthgap 5.0 LTS"
   help
     OE Scarthgap 5.0 LTS release .
 
-config RELEASE_KIRKSTONE
-  bool "OE Kirkstone 4.0 LTS"
-  help
-    OE Kirkstone 4.0 LTS release .
-
 endchoice
-
-config INCLUDE_DH_REPO_YML
-  bool "Build linux and u-boot sources from DH source repositories"
-  depends on MACHINE_IMX6_DHCOM_PDK2
-  help
-    Use DH electronics source repositories instead of mainline sources.
-    This contains a well-tested and static version, but not as up to date
-    as linux mainline sources.
 
 config INCLUDE_EXTRAS_YML
   bool "Build full example dh-image-demo using meta-dhsom-extras layer"
@@ -212,7 +209,7 @@ config KAS_BUILD_SYSTEM
 
 config KAS_INCLUDE_RELEASE_YML_FILE
   string "KAS OE release YML file"
-  default "include/common-kirkstone.yml" if RELEASE_KIRKSTONE
+  default "include/common-wrynose.yml" if RELEASE_WRYNOSE
   default "include/common-scarthgap.yml" if RELEASE_SCARTHGAP
 
 config KAS_INCLUDE_BSP_YML_FILE
@@ -235,6 +232,7 @@ config KAS_INCLUDE_BSP_YML_FILE
 	     MACHINE_STM32MP1_DHCOR_AVENGER96 || \
 	     MACHINE_STM32MP1_DHCOR_DRC_COMPACT || \
 	     MACHINE_STM32MP1_DHCOR_TESTBENCH || \
+	     MACHINE_STM32MP23_DHCOS_BB || \
 	     MACHINE_STM32MP25_DHCOS_BB || \
 	     MACHINE_STM32MP25_DHCOS_DHSBC
   default "dh-imx6-dhcom-drc02.yml" if MACHINE_IMX6_DHCOM_DRC02
@@ -255,13 +253,9 @@ config KAS_INCLUDE_BSP_YML_FILE
   default "dh-stm32mp1-dhcor-avenger96.yml" if MACHINE_STM32MP1_DHCOR_AVENGER96
   default "dh-stm32mp1-dhcor-drc-compact.yml" if MACHINE_STM32MP1_DHCOR_DRC_COMPACT
   default "dh-stm32mp1-dhcor-testbench.yml" if MACHINE_STM32MP1_DHCOR_TESTBENCH
+  default "dh-stm32mp23-dhcos-bb.yml" if MACHINE_STM32MP23_DHCOS_BB
   default "dh-stm32mp25-dhcos-bb.yml" if MACHINE_STM32MP25_DHCOS_BB
   default "dh-stm32mp25-dhcos-dhsbc.yml" if MACHINE_STM32MP25_DHCOS_DHSBC
-
-config KAS_INCLUDE_DH_REPO_YML_FILE
-  string "KAS DH Repo YML file"
-  depends on INCLUDE_DH_REPO_YML
-  default "include/common-dh-repo-settings.yml"
 
 config KAS_INCLUDE_EXTRAS_YML_FILE
   string "KAS Extras layer YML file"
